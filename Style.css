@@ -1,0 +1,33 @@
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    color: white;
+    background: linear-gradient(90deg, #014572, #2485ac);
+    border: none;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+.logoL{
+    width: 50px;
+    height: 50px;
+    font-size: 3rem;
+}
+.logoT2{
+    color: aqua;
+}
+.logoT{
+    font-size: 2rem;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #4e4a4a;
+}
