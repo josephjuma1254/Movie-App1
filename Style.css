@@ -31,3 +31,21 @@ body {
     font-family: Arial, sans-serif;
     background-color: #4e4a4a;
 }
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 7rem;
+    margin: 0;
+    padding: 0;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5 rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+nav a:hover {
+    color: aqua;
+}
