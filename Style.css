@@ -50,3 +50,24 @@ nav a {
 nav a:hover {
     color: aqua;
 }
+
+.search-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+.search-box {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    border: none;
+    box-shadow: #49beec;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    background-color: #2d2d2d;
+}
+.search-box:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px aqua;
+}
