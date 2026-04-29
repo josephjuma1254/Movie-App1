@@ -71,3 +71,13 @@ nav a:hover {
     outline: none;
     box-shadow: 0 0 0 2px aqua;
 }
+
+.search-icon{
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(1, 168, 168);
+    cursor: pointer;
+    font-size: 2rem;
+}
