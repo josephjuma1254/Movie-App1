@@ -25,6 +25,7 @@ header{
 }
 .logoT{
     font-size: 2rem;
+    transform: translateY(50%);
 }
 body {
     margin: 0;
