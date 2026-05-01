@@ -156,3 +156,37 @@ main {
     border-bottom: 2px solid #1797ec;
 
 }
+footer{
+    background-color: black;
+    padding: 2rem 3rem;
+    margin-top: 2rem;
+}
+.footer-content{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.footer-column h3{
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: turquoise;
+}
+.footer-column ul{
+    list-style: none;
+}
+.footer-column a{
+    color: #aaa;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.footer-column a:hover{
+    color: #1797ec;
+}
+.copyright{
+    text-align: center;
+    margin-top: 3rem;
+    color: #777;
+}
