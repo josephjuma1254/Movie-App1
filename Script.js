@@ -90,6 +90,79 @@ function showError(container, message) {
   container.appendChild(errorEl);
 }
 
+function filterCards(query, container) {
+  const cards = Array.from(container.querySelectorAll('.media-card'));
+  const normalizedQuery = query.trim().toLowerCase();
+  let visibleCount = 0;
+
+  cards.forEach((card) => {
+    const title = card.querySelector('.media-title')?.textContent.toLowerCase() || '';
+    const matches = !normalizedQuery || title.includes(normalizedQuery);
+    card.style.display = matches ? 'flex' : 'none';
+    if (matches) visibleCount += 1;
+  });
+
+  if (visibleCount === 0) {
+    showError(container, 'No results match your search.');
+  }
+}
+
+function resetFilters(container) {
+  const cards = Array.from(container.querySelectorAll('.media-card'));
+  cards.forEach((card) => {
+    card.style.display = 'flex';
+  });
+}
+
+function setupUI() {
+  const searchInput = document.querySelector('.search-box');
+  const searchButton = document.querySelector('.search-icon');
+  const seeAllLinks = Array.from(document.querySelectorAll('.see-all'));
+  const playButton = document.querySelector('.btn-primary');
+  const infoButton = document.querySelector('.btn-secondary');
+
+  if (searchButton && searchInput) {
+    searchButton.addEventListener('click', () => {
+      const query = searchInput.value;
+      filterCards(query, popularContainer);
+      filterCards(query, tvContainer);
+    });
+
+    searchInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        searchButton.click();
+      }
+    });
+  }
+
+  seeAllLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const category = link.closest('section')?.querySelector('.category-title')?.textContent || '';
+      if (category.includes('Popular Movies')) {
+        resetFilters(popularContainer);
+        popularContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (category.includes('Trending TV Shows')) {
+        resetFilters(tvContainer);
+        tvContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  if (playButton) {
+    playButton.addEventListener('click', () => {
+      alert('Play action triggered for the featured movie.');
+    });
+  }
+
+  if (infoButton) {
+    infoButton.addEventListener('click', () => {
+      alert('More info is not available in this demo, but the button is working.');
+    });
+  }
+}
+
 async function fetchMovies() {
   const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
   const response = await fetch(url);
@@ -122,6 +195,7 @@ async function initialize() {
     const [movies, tvShows] = await Promise.all([fetchMovies(), fetchTVShows()]);
     renderCards(popularContainer, movies, 'movie');
     renderCards(tvContainer, tvShows, 'tv');
+    setupUI();
   } catch (error) {
     const message = 'Failed to load content. Please try again later.';
     showError(popularContainer, message);
